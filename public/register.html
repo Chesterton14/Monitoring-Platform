@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>注册</title>
+		<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/main.css" />
+		<link rel="stylesheet" href="css/layui.css">
+		<script src="layui.js"></script>
+		<script src="js/vue.min.js"></script>
+		<script src="js/vue-resource-1.5.1.js"></script>
+	</head>
+
+	<body>
+		<div>
+			<div class="background-img">
+				<img src="img/register.jpg" />
+			</div>
+			<div class="login-div" style="height: 400px;" id="login">
+				<div class="login-text">账号注册</div>
+
+					<div class="login-input">
+						<span class="login-icon">
+						<span class="glyphicon glyphicon-user"></span>
+						</span>
+						<input type="text" name="newusername" id="newusername" v-model="newusername" value="" placeholder="请输入账号" />
+						<p id="usernameError" class="error" style="color: white;"></p>
+					</div>
+					<div class="login-input">
+						<span class="login-icon">
+						<span class="glyphicon glyphicon-lock"></span>
+						</span>
+						<input type="password" name="newpwd1" id="newpwd1" v-model="newpwd1" value="" placeholder="请输入密码" />
+						<p id="pwdError1" class="error" style="color: white;"></p>
+					</div>
+					<div class="login-input">
+						<span class="login-icon">
+						<span class="glyphicon glyphicon-lock"></span>
+						</span>
+						<input type="password" name="newpwd2" id="newpwd2" v-model="newpwd2" value="" placeholder="请再次输入密码" />
+						<p id="pwdError2" class="error" style="color: white;"></p>
+					</div>
+					<div class="login-button">
+						<button type="submit" id="btn" class="btn btn-default" @click="doBtn">注册</button>
+					</div>
+
+				<div class="toLogin">
+					<a href="index.html">前往登录</a>
+				</div>
+			</div>
+		</div>
+		<footer>
+			<div class="copy">
+				&copy; 北斗车联网实验室 2018
+			</div>
+		</footer>
+	</body>
+
+</html>
+<script>
+    layui.use('element', function () {
+        var element = layui.element;
+    });
+
+</script>
+<script>
+/*	$('#btn').click(function () {
+		var newusername = $("newusername").val(),
+            newpwd1 = $("newpwd1").val(),
+            newpwd2 = $("newpwd2").val();
+		$.post('/newuser',{
+            newusername : newusername,
+            newpwd1 : newpwd1,
+            newpwd2 : newpwd2
+        },function (data) {
+            if(data == "ok"){
+                alert("注册成功!");
+                return window.location = "/";
+            }
+        })
+    })*/
+var vm =new Vue({
+	el:'#login',
+	data:{
+        newusername : '',
+        newpwd1 : '',
+        newpwd2 : ''
+	},
+	methods:{
+        doBtn:function(){
+            this.$http.post('/newuser',{
+                newusername:this.newusername,
+                newpwd1:this.newpwd1,
+                newpwd2:this.newpwd2
+			}).then(function(result){
+                if(result.data == "ok"){
+                    layui.use('layer', function(){
+                        var layer = layui.layer;
+                        layer.msg('注册成功',{icon: 6,time: 1500},function () {
+                            return window.location = "/";
+                        });
+                    });
+                }
+			})
+		}
+	}
+})
+</script>

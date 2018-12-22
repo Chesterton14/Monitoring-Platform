@@ -1,0 +1,28 @@
+{
+  "code": 0,
+  "msg": "",
+  "count": 1000,
+  "data": [
+    {
+      "id": 1,
+      "username": "1号车",
+      "city": "广州",
+      "logins":2,
+      "joinTime":"2018 09-01"
+    },
+    {
+      "id": 2,
+      "username": "2号车",
+      "city": "广州",
+      "logins":2,
+      "joinTime":"2018 09-01"
+    },
+    {
+      "id": 3,
+      "username": "3号车",
+      "city": "广州",
+      "logins":1,
+      "joinTime":"2018 09-01"
+    }
+  ]
+}

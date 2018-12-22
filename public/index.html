@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <link rel="icon" href="/img/newlogo.png" type="image/x-icon"/>
+    <title>北斗车联网实验室</title>
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="css/layui.css">
+    <script src="layui.js"></script>
+    <script src="js/vue.min.js"></script>
+    <script src="js/vue-resource-1.5.1.js"></script>
+</head>
+<body>
+<div class="login-div" id="login">
+    <div class="login-text">用户登录</div>
+    <!--<form onsubmit="return check(this)">-->
+    <div class="login-input">
+        <span class="login-icon">
+            <span class="glyphicon glyphicon-user"></span>
+        </span>
+        <input type="text" name="username" id="username" v-model="username" value="" placeholder="请输入账号"/>
+        <p id="usernameError" class="error" style="color: white;"></p>
+    </div>
+    <div class="login-input">
+        <span class="login-icon">
+            <span class="glyphicon glyphicon-lock"></span>
+        </span>
+        <input type="password" name="pwd" id="pwd" v-model="pwd" value="" placeholder="请输入密码"/>
+        <p id="pwdError" class="error" style="color: white;"></p>
+    </div>
+    <div class="login-button">
+        <button type="submit" id="btnSubmit" class="btn btn-default" @click="dologin">登录</button>
+    </div>
+    <!--</form>-->
+    <!--<div class="toRegister">
+        <a href="register.html">前往注册</a>
+    </div>-->
+</div>
+<footer>
+    <div class="copy">
+        &copy; 北斗车联网实验室 2018
+    </div>
+</footer>
+</body>
+<script>
+    layui.use('element', function () {
+        var element = layui.element;
+    });
+
+</script>
+<script>
+    new Vue({
+        el: '#login',
+        data: {
+            username: '',
+            pwd: ''
+        },
+        methods: {
+            dologin: function () {
+
+                this.$http.post('/do', {
+                    username: this.username,
+                    pwd: this.pwd
+                }, {}).then(function (result) {
+
+                    var data = result.data;
+                    if (data == "ok") {
+                        layui.use('layer', function () {
+                            var layer = layui.layer;
+                            layer.msg('登录成功', {icon: 6, time: 1500}, function () {
+                                return window.location = "/gps.html";
+                            });
+                        });
+                    }
+                    if (data == "usererr") {
+                        layui.use('layer', function () {
+                            var layer = layui.layer;
+                            layer.msg('此用户不存在', {icon: 5, time: 1500}, function () {
+                                return
+                            });
+                        });
+                    }
+                    if (data == "pwderr") {
+                        layui.use('layer', function () {
+                            var layer = layui.layer;
+                            layer.msg('密码错误', {icon: 5, time: 1500}, function () {
+                                return
+                            });
+                        });
+                    }
+                })
+            }
+        }
+    })
+</script>
+<script>
+    /*        $("#btnSubmit").click(function () {
+                var username = $("#username").val(),
+                    pwd = $("#pwd").val();
+                $.post("/do",{
+                    username:username,
+                    pwd:pwd
+                },function(data){
+                    if(data == "ok"){
+                        layui.use('layer', function(){
+                            var layer = layui.layer;
+                            layer.msg('登录成功',{icon: 6,time: 1500},function () {
+                                return window.location = "/gps.html";
+                            });
+                        });
+                    }
+                    if(data == "usererr"){
+                        layui.use('layer', function(){
+                            var layer = layui.layer;
+                            layer.msg('此用户不存在',{icon: 5,time: 1500},function () {
+                                return
+                            });
+                        });
+                    }
+                    if(data == "pwderr"){
+                        layui.use('layer', function(){
+                            var layer = layui.layer;
+                            layer.msg('密码错误',{icon: 5,time: 1500},function () {
+                                return
+                            });
+                        });
+                    }
+                })
+            });*/
+</script>
+
+
+</html>

@@ -1,0 +1,99 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+body{
+	background-color: #393D49;
+}
+.login-div {
+	position: absolute;
+	width: 400px;
+	height: 330px;
+	/*background-color: rgba(0, 0, 0, 0.7);*/
+	color: white;
+	margin-left:-200px;
+	margin-top:-165px;
+	left:50%;
+	top:50%;
+
+}
+
+.background-img img {
+	display: inline-block;
+	height: 900px;
+	width: 100%;
+}
+
+.login-text {
+	margin: 40px 30px 40px 30px;
+	text-align: center;
+	font-size: 22px;
+	font-family: "微软雅黑";
+	letter-spacing: 1px;
+}
+
+.login-input {
+	margin: 10px 30px 20px 30px;
+	background-color: white;
+	color: black;
+	height: 36px;
+}
+ 	
+.login-input .login-icon {
+	display: inline-block;
+	position: relative;
+	top: 4px;
+	left: 9px;
+	width: 36px;
+	height: 36px;
+	font-size: 22px;
+}
+
+.login-div input {
+	border: none;
+	outline: none;
+	display: inline-block;
+	height: 34px;
+	width:300px;
+}
+
+.login-button {
+	margin: 30px 30px 20px 30px;
+}
+
+.login-button button {
+	width: 100%;
+	height: 35px;
+	background-color:  darkred;
+	color: white;
+	border: none;
+}
+
+.login-button button:hover {
+	background-color: red;
+	color: white;
+}
+
+footer {
+	width: 100%;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	color: #f6f6f6;
+	text-align: center;
+}
+.toRegister,.toLogin{
+	text-align: right;
+	margin: 0 30px 0 0;
+}
+.toRegister a,.toLogin a{
+	font-size: 12px;
+	color: #888888;
+	text-decoration: none;
+}
+.toRegister a:hover,.toLogin a:hover{
+	color: white;
+}
+.copy {
+	padding: 10px;
+}
